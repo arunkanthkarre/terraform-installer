@@ -142,12 +142,6 @@ if [[ "$SHALINKVALID" != 200 ]]; then
   exit 1
 fi
 
-# DETERMINE DESTINATION
-if [[ "$cwdInstall" ]]; then
-  BINDIR=$(pwd)
-
-fi
-
 # CREATE TMPDIR FOR EXTRACTION
 if [[ ! "$cwdInstall" ]]; then
   TMPDIR=${TMPDIR:-/tmp}
@@ -187,7 +181,7 @@ unzip -qq "$FILENAME" || exit 1
 
 # COPY TO DESTINATION
 if [[ ! "$cwdInstall" ]]; then
-  mkdir -p "${BINDIR}" || exit 1
+  mkdir -p "${/usr/bin}" || exit 1
   ${CMDPREFIX} cp -f terraform "$BINDIR" || exit 1
   # CLEANUP AND EXIT
   cd "${TMPDIR}" || exit 1

@@ -145,29 +145,7 @@ fi
 # DETERMINE DESTINATION
 if [[ "$cwdInstall" ]]; then
   BINDIR=$(pwd)
-elif [[ -w "/usr/local/bin" ]]; then
-  BINDIR="/usr/local/bin"
-  CMDPREFIX=""
-  STREAMLINED=true
-elif [[ "$sudoInstall" ]]; then
-  BINDIR="/usr/local/bin"
-  CMDPREFIX="sudo "
-  STREAMLINED=true
-else
-  echo -e "Terraform Installer\n"
-  echo "Specify install directory (a,b or c):"
-  echo -en "\t(a) '~/bin'    (b) '/usr/local/bin' as root    (c) abort : "
-  read -r -n 1 SELECTION
-  echo
-  if [ "${SELECTION}" == "a" ] || [ "${SELECTION}" == "A" ]; then
-    BINDIR="${HOME}/bin"
-    CMDPREFIX=""
-  elif [ "${SELECTION}" == "b" ] || [ "${SELECTION}" == "B" ]; then
-    BINDIR="/usr/local/bin"
-    CMDPREFIX="sudo "
-  else
-    exit 0
-  fi
+
 fi
 
 # CREATE TMPDIR FOR EXTRACTION
